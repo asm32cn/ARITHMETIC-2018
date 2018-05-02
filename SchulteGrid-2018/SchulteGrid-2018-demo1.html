@@ -5,9 +5,11 @@
 <meta name="generator" content="editplus" />
 <style>
 body { background-color: #a5cbf7; }
+h1 { font-size: 72px; margin:0px; padding:0px; line-height: 150%;}
 span { position:absolute; top:20px; right:20px; font-size:56px;}
 ul { display:block; margin:0px; padding:0px; width:500px; height:500px; border-right:1px solid #666; border-bottom:1px solid #666; }
 li { display:block; margin:0px; padding:0px; float:left; width: 99px; height:99px; line-height: 99px; text-align:center; border-left:1px solid #666; border-top:1px solid #666; font-size:64px; }
+#divDisplay { width: 550px; height: 110px; float:left; }
 </style>
 </head>
 
@@ -59,8 +61,47 @@ function SchulteGrid(){
 
 	//console.log( list );
 }
+
+function EclapseTime(){
+	var _this = this;
+	var intervalId = null;
+	var startDate = null;
+	var _button = document.createElement('div');
+	var displayElapseTime = document.createElement('span');
+	_button.innerHTML = 'Start/Stop';
+	_button.style.cssText = 'display:block; float:left; font-size:32px; padding: 20px; border:1px solid #069; border-radius:10px; ';
+	displayElapseTime.style.cssText = 'position:absolute; right:20px; top:20px; font-size:64px;';
+	document.body.appendChild(_button);
+	document.body.appendChild(displayElapseTime);
+
+	this.initStartDate = function(){
+		startDate = new Date();
+	}
+	this.clearTimer = function(){
+		if(intervalId){
+			clearInterval(intervalId);
+			intervalId = null;
+		}
+	}
+	this.startTimer = function(){
+		_this.clearTimer();
+		_this.initStartDate();
+		intervalId = setInterval( _this.displayElapsedTime , 100);
+	}
+	this.displayElapsedTime = function(){
+		displayElapseTime.innerHTML = ( (new Date() - startDate) / 1000 ).toFixed(3)
+	}
+	_button.onclick = function(){
+		if(intervalId){
+			_this.clearTimer();
+		}else{
+			_this.startTimer();
+		}
+	}
+}
 var sg = new SchulteGrid()
 document.getElementById('divDisplay').innerHTML = sg.toHtml();
+EclapseTime();
 //sg.toHtml();
 </script>
 
