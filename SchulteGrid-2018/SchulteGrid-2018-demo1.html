@@ -1,0 +1,68 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>SchulteGrid-2018-demo1</title>
+<meta name="generator" content="editplus" />
+<style>
+body { background-color: #a5cbf7; }
+span { position:absolute; top:20px; right:20px; font-size:56px;}
+ul { display:block; margin:0px; padding:0px; width:500px; height:500px; border-right:1px solid #666; border-bottom:1px solid #666; }
+li { display:block; margin:0px; padding:0px; float:left; width: 99px; height:99px; line-height: 99px; text-align:center; border-left:1px solid #666; border-top:1px solid #666; font-size:64px; }
+</style>
+</head>
+
+<body>
+
+<h1>SchulteGrid-2018-demo1</h1>
+
+<div id="divDisplay"></div>
+
+<script>
+function SchulteGrid(){
+	var data = [];
+	var list = [];
+	var nCount = 25;
+
+	this.initData = function(){
+		data = [];
+		list = [];
+		for(var i = 0; i < nCount; i++){
+			var n = i + 1;
+			data.push({'n': n, 'next': n});
+		}
+		var current = 0,
+			prev = nCount - 1;
+		data[prev].next = 0;
+		for(var i = 0; i < nCount; i++){
+			var r = parseInt(Math.random() * (nCount - i));
+			for(var n = 0; n < r; n++){
+				prev = current;
+				current = data[current].next;
+			}
+			list.push(data[current].n);
+			data[prev].next = data[current].next;
+			data[current].next = -1;
+			current = data[prev].next;
+		}
+	}
+
+	this.initData();
+
+	this.toHtml = function(){
+		var strDisplay = '<ul>\n';
+		for(var i = 0; i < nCount; i++){
+			strDisplay += '\t<li>' + list[i] + '</li>\n';
+		}
+		strDisplay += '</ul>\n';
+		return strDisplay;
+	}
+
+	//console.log( list );
+}
+var sg = new SchulteGrid()
+document.getElementById('divDisplay').innerHTML = sg.toHtml();
+//sg.toHtml();
+</script>
+
+</body>
+</html>
