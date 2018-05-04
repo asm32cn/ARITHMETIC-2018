@@ -29,7 +29,6 @@ public class SchulteGrid2018Java {
 	public static int[] getData2(){
 		//int[][] source2 = new int[nCount][2]; // 0:n, 1:next
 		//int[] list2 = new int[nCount];
-		int list_ptr = 0;
 		for(int i = 0; i < nCount; i++){
 			source2[i][0] = source2[i][1] = i + 1;
 		}
@@ -44,7 +43,7 @@ public class SchulteGrid2018Java {
 				current = source2[current][1];
 			}
 			
-			list2[list_ptr++] = source2[current][0];
+			list2[i] = source2[current][0];
 			source2[prev][1] = source2[current][1];
 			source2[current][1] = -1;
 			current = source2[prev][1];
