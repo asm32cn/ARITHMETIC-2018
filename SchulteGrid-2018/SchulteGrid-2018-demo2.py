@@ -19,7 +19,6 @@ def getList():
 	nCount = 25
 	_source = [{'n': n, 'next': n} for n in xrange(1, nCount + 1)]
 	_list = [0] * nCount
-	_list_ptr = 0
 
 	current = 0
 	prev = nCount - 1
@@ -29,8 +28,7 @@ def getList():
 		for n in xrange(r):
 			prev = current
 			current = _source[current]['next']
-		_list[_list_ptr] = _source[current]['n']
-		_list_ptr += 1
+		_list[i] = _source[current]['n']
 
 		_source[prev]['next'] = _source[current]['next']
 		_source[current]['next'] = -1
