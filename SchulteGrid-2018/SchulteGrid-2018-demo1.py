@@ -33,8 +33,8 @@ class index():
 			'<head><title>SchulteGrid-2018-demo1</title>\n' \
 			'<style>\n' \
 			'body { background-color: #a5cbf7; }\n' \
-			'span { position:absolute; top:20px; right:20px; font-size:56px;}\n' \
-			'ul { display:block; margin:0px; padding:0px; width:500px; height:500px; border-right:1px solid #666; border-bottom:1px solid #666; }\n' \
+			'h1 { font-size: 72px; margin:0px; padding:0px; line-height: 150%;}\n' \
+			'ul { display:block; margin:0px; padding:0px; float:left; width:500px; height:500px; border-right:1px solid #666; border-bottom:1px solid #666; }\n' \
 			'li { display:block; margin:0px; padding:0px; float:left; width: 99px; height:99px; line-height: 99px; text-align:center; border-left:1px solid #666; border-top:1px solid #666; font-size:64px; }\n' \
 			'</style>\n' \
 			'</head>\n' \
@@ -43,30 +43,45 @@ class index():
 			'<ul>\n' + \
 			'\n'.join( [ '\t<li%s>%s</li>' % (' id="' + bindDigitId[i] + '"' if bindDigitId.has_key(i) else '', i) for i in getList() ] ) + \
 			'</ul>\n\n' \
-			'<span></span>\n' \
 			'<script>\n' \
-			'var txtDisplay = document.getElementsByTagName("span")[0];\n' \
-			'var dateStart = null;\n' \
-			'var intervalId = null;\n' \
-			'function PA_js_initStartDate(){\n' \
-			'\tdateStart = new Date();\n' \
+			'function EclapseTime(){\n' \
+			'\tvar _this = this;\n' \
+			'\tvar intervalId = null;\n' \
+			'\tvar startDate = null;\n' \
+			'\tvar _button = document.createElement(\'div\');\n' \
+			'\tvar displayElapseTime = document.createElement(\'span\');\n' \
+			'\t_button.innerHTML = \'Start/Stop\';\n' \
+			'\t_button.style.cssText = \'display:block; float:left; font-size:32px; margin:10px 20px; padding: 20px; border:1px solid #069; border-radius:10px; \';\n' \
+			'\tdisplayElapseTime.style.cssText = \'position:absolute; right:20px; top:20px; font-size:64px;\';\n' \
+			'\tdocument.body.appendChild(_button);\n' \
+			'\tdocument.body.appendChild(displayElapseTime);\n' \
+			'\n' \
+			'\tthis.initStartDate = function(){\n' \
+			'\t\tstartDate = new Date();\n' \
+			'\t}\n' \
+			'\tthis.clearTimer = function(){\n' \
+			'\t\tif(intervalId){\n' \
+			'\t\t\tclearInterval(intervalId);\n' \
+			'\t\t\tintervalId = null;\n' \
+			'\t\t}\n' \
+			'\t}\n' \
+			'\tthis.startTimer = function(){\n' \
+			'\t\t_this.clearTimer();\n' \
+			'\t\t_this.initStartDate();\n' \
+			'\t\tintervalId = setInterval( _this.displayElapsedTime , 100);\n' \
+			'\t}\n' \
+			'\tthis.displayElapsedTime = function(){\n' \
+			'\t\tdisplayElapseTime.innerHTML = ( (new Date() - startDate) / 1000 ).toFixed(3);\n' \
+			'\t}\n' \
+			'\t_button.onclick = function(){\n' \
+			'\t\tif(intervalId){\n' \
+			'\t\t\t_this.clearTimer();\n' \
+			'\t\t}else{\n' \
+			'\t\t\t_this.startTimer();\n' \
+			'\t\t}\n' \
+			'\t}\n' \
 			'}\n' \
-			'function PA_js_doDisplay(){\n' \
-			'\ttxtDisplay.innerHTML = (((new Date()) - dateStart) / 1000 ).toFixed(3);\n' \
-			'}\n' \
-			'function PA_js_clearTimer(){\n' \
-			'\tclearInterval(intervalId);\n' \
-			'\tintervalId = null;\n' \
-			'}\n' \
-			'function PA_js_startTimer(){\n' \
-			'\tif( intervalId ) PA_js_clearTimer();\n' \
-			'\tPA_js_initStartDate();\n' \
-			'\tintervalId = setInterval( PA_js_doDisplay, 100 );\n' \
-			'}\n' \
-			'txtDisplay.onclick = PA_js_initStartDate;\n' \
-			'PA_js_startTimer()\n' \
-			'document.getElementById("firstDigit").onclick = PA_js_startTimer;\n' \
-			'document.getElementById("lastDigit").onclick = PA_js_clearTimer;\n' \
+			'EclapseTime();\n' \
 			'</script>\n\n' \
 			'</body>\n' \
 			'</html>'
