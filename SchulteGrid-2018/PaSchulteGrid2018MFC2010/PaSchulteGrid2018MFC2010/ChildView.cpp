@@ -25,6 +25,7 @@ CChildView::~CChildView()
 
 BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_PAINT()
+	ON_COMMAND(ID_RELOAD_DATA, &CChildView::OnReloadData)
 END_MESSAGE_MAP()
 
 
@@ -98,7 +99,7 @@ void CChildView::PA_DoInitMatrix(void)
 {
 	int A_nSource[25][2];
 
-	srand(time(NULL));
+	srand((UINT)time(NULL));
 
 	for(int i = 0; i < 25; i++){
 		A_nSource[i][0] = A_nSource[i][1] = i + 1;
@@ -120,4 +121,12 @@ void CChildView::PA_DoInitMatrix(void)
 		A_nSource[current][1] = -1;
 		current = A_nSource[prev][1];
 	}
+}
+
+
+void CChildView::OnReloadData()
+{
+	// TODO: Add your command handler code here
+	PA_DoInitMatrix();
+	InvalidateRect(NULL, TRUE);
 }

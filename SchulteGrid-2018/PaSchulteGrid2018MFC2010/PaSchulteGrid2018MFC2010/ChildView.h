@@ -37,5 +37,7 @@ private:
 	CFont m_fontText;
 	int A_nMatrix[25];
 	CString A_strMatrix[25];
+public:
+	afx_msg void OnReloadData();
 };
 
