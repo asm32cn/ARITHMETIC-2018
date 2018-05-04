@@ -8,6 +8,7 @@ import java.util.*;
 
 public class schulte_grid_demo1_servlet extends HttpServlet{
 	public static final String strAppName = "schulte-grid-demo1-servlet";
+
 	public static final String strHtmlPartA = "<!doctype html>\n" +
 		"<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
 		"<head>\n" +
@@ -16,9 +17,8 @@ public class schulte_grid_demo1_servlet extends HttpServlet{
 		"<style>\n" +
 		"body { background-color: #a5cbf7; }\n" +
 		"h1 { font-size: 72px; margin:0px; padding:0px; line-height: 150%;}\n" +
-		"span { position:absolute; top:20px; right:20px; font-size:56px;}\n" +
-		"ul { display:block; float:left; margin:0px; padding:0px; width:500px; height:500px; border-right:1px solid #666; border-bottom:1px solid #666; }\n" +
-		"li { display:block; margin:0px; padding:0px; float:left; width: 99px; height:99px; line-height: 99px; text-align:center; border-left:1px solid #666; border-top:1px solid #666; font-size:64px; }\n" +
+		"ul { display:block; margin:0px; padding:0px; float:left; width:500px; height:500px; border-right:1px solid #666; border-bottom:1px solid #666; }\n" +
+		"li { display:block; margin:0px; padding:0px; float:left; width:99px; height:99px; line-height: 99px; text-align:center; border-left:1px solid #666; border-top:1px solid #666; font-size:64px; }\n" +
 		"#divDisplay { width: 550px; height: 110px; float:left; }\n" +
 		"</style>\n" +
 		"</head>\n\n" +
@@ -69,9 +69,11 @@ public class schulte_grid_demo1_servlet extends HttpServlet{
 		"</html>\n";
 
 	private final int nCount = 25;
+
 	private int nextInt(int n){
 		return (int)(Math.random() * n);
 	}
+
 	private List<Integer> getData(){
 		List<Integer> list = new ArrayList<Integer>();
 		List<Integer> source = new ArrayList<Integer>();
