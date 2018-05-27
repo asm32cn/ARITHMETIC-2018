@@ -30,7 +30,7 @@ const (
 		"<body>\n\n" +
 		"<h1>SchulteGrid-2018-go-demo1</h1>\n\n\n"
 	strHtmlDataB = "\n<script>\n" +
-		"function EclapseTime(){\n" +
+		"function ElapsedTime(){\n" +
 		"	var _this = this;\n" +
 		"	var intervalId = null;\n" +
 		"	var startDate = null;\n" +
@@ -66,7 +66,7 @@ const (
 		"		}\n" +
 		"	}\n" +
 		"}\n" +
-		"EclapseTime();\n" +
+		"ElapsedTime();\n" +
 		"</script>\n\n" +
 		"</body>\n" +
 		"</html>\n"
