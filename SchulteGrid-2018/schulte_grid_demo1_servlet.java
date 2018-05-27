@@ -26,7 +26,7 @@ public class schulte_grid_demo1_servlet extends HttpServlet{
 		"<h1>" + strAppName + "</h1>\n\n";
 
 	public static final String strHtmlPartB = "<script>\n" +
-		"function EclapseTime(){\n" +
+		"function ElapsedTime(){\n" +
 		"\tvar _this = this;\n" +
 		"\tvar intervalId = null;\n" +
 		"\tvar startDate = null;\n" +
@@ -63,7 +63,7 @@ public class schulte_grid_demo1_servlet extends HttpServlet{
 		"\t\t}\n" +
 		"\t}\n" +
 		"}\n" +
-		"EclapseTime();\n" +
+		"ElapsedTime();\n" +
 		"</script>\n\n" +
 		"</body>\n" +
 		"</html>\n";
